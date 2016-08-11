@@ -39,7 +39,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="7xK-6z-4KA">
-                                <rect key="frame" x="20" y="114" width="560" height="17"/>
+                                <rect key="frame" x="20" y="104" width="560" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -49,7 +49,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="gNe-aY-kLO">
-                                <rect key="frame" x="20" y="489" width="560" height="17"/>
+                                <rect key="frame" x="20" y="499" width="560" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -70,12 +70,16 @@
                             <constraint firstItem="gNe-aY-kLO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hpw-nc-UYZ"/>
                             <constraint firstAttribute="trailing" secondItem="kUm-8B-IA3" secondAttribute="trailing" id="OlQ-Oo-Dqs"/>
                             <constraint firstItem="7xK-6z-4KA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UNY-GY-2Aj"/>
-                            <constraint firstItem="kUm-8B-IA3" firstAttribute="top" secondItem="gNe-aY-kLO" secondAttribute="bottom" constant="50" id="UQz-hV-kea"/>
+                            <constraint firstItem="kUm-8B-IA3" firstAttribute="top" secondItem="gNe-aY-kLO" secondAttribute="bottom" constant="40" id="UQz-hV-kea">
+                                <variation key="heightClass=compact-widthClass=compact" constant="12"/>
+                            </constraint>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kUm-8B-IA3" secondAttribute="bottom" id="WhE-Kz-cad"/>
                             <constraint firstAttribute="trailing" secondItem="lFt-1S-jQX" secondAttribute="trailing" id="XEd-39-E8P"/>
                             <constraint firstItem="kUm-8B-IA3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="apj-6N-qsN"/>
                             <constraint firstItem="kUm-8B-IA3" firstAttribute="top" secondItem="lFt-1S-jQX" secondAttribute="bottom" id="x2Y-XE-1a9"/>
-                            <constraint firstItem="7xK-6z-4KA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="xYh-nC-KW5"/>
+                            <constraint firstItem="7xK-6z-4KA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="xYh-nC-KW5">
+                                <variation key="heightClass=compact-widthClass=compact" constant="12"/>
+                            </constraint>
                             <constraint firstItem="7xK-6z-4KA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="yN8-Xg-dJl"/>
                         </constraints>
                         <variation key="default">
@@ -92,7 +96,11 @@
                                 <action selector="shareMeme:" destination="BYZ-38-t0r" id="xc5-lm-X34"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="tcr-XD-b4h"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="tcr-XD-b4h">
+                            <connections>
+                                <action selector="resetUI:" destination="BYZ-38-t0r" id="1ZH-3d-jeu"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bottomTextField" destination="gNe-aY-kLO" id="KWN-GZ-pEi"/>

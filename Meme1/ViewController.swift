@@ -40,14 +40,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         cameraBarBtn.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         subscribeToKeyboardNotifications()
         
-        if (memeImageView.image == nil){
-            
-            shareMemeNavBtn.enabled = false
-            
-        }else {
-            
-            shareMemeNavBtn.enabled = true
-        }
+        updateUIState()
         
     }
     
@@ -155,8 +148,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if completed {
                
                 //Create the meme
-                let meme = Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!,
-                                originalImage:self.memeImageView.image!, memedImage:memedImage)
+                //TODO: in Meme final version use a persistent store.
+                let meme = Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!,originalImage:self.memeImageView.image!, memedImage:memedImage)
                 
                 self.dismissViewControllerAnimated(true, completion: nil)
 
@@ -167,9 +160,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         presentViewController(activityViewController, animated: true, completion: nil)
         
     }
-    
-    
-    
+
     func generateMemedImage() -> UIImage {
         
         setNavToolBarButtonHidden(true)
@@ -192,7 +183,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         bottomToolBar.hidden = hidden
         navigationController?.navigationBarHidden = hidden
+    }
+    
+    @IBAction func resetUI(sender: AnyObject) {
+            
+        memeImageView.image = nil
+        updateUIState()
+    }
+    
+    
+    func updateUIState(){
         
+        if (memeImageView.image == nil){
+            
+            shareMemeNavBtn.enabled = false
+            topTextField.text = "TOP"
+            bottomTextField.text = "BOTTOM"
+            
+        }else {
+            
+            shareMemeNavBtn.enabled = true
+        }   
     }
     
     
