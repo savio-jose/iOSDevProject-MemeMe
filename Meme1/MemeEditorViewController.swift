@@ -19,8 +19,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //set the text attributes 
+        
+        setUpMemeTextField(topTextField)
+        setUpMemeTextField(bottomTextField)
+        
+    }
+    
+    
+    func setUpMemeTextField(textField: UITextField){
+        
+        //set the text attributes
         let memeTextAttributes = [
             NSStrokeColorAttributeName : UIColor.blackColor(),
             NSForegroundColorAttributeName : UIColor.whiteColor(),
@@ -28,10 +36,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             NSStrokeWidthAttributeName : -1.0
         ]
         
-        topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = NSTextAlignment.Center
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.textAlignment = NSTextAlignment.Center
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = NSTextAlignment.Center
         
     }
     
@@ -39,7 +45,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         cameraBarBtn.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         subscribeToKeyboardNotifications()
-        
         updateUIState()
         
     }
@@ -93,20 +98,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //MARK: UIImagePickerControllerDelegate
     @IBAction func pickAnImageFromAlbum(sender: AnyObject) {
         
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(imagePickerController, animated: true, completion: nil)
-        
+        presentImagePickerFromSource(UIImagePickerControllerSourceType.PhotoLibrary)
     }
     
     @IBAction func pickAnImageFromCamera(sender: AnyObject) {
         
+        presentImagePickerFromSource(UIImagePickerControllerSourceType.Camera)
+    }
+    
+    
+    func presentImagePickerFromSource(sourceType: UIImagePickerControllerSourceType){
+        
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+        imagePickerController.sourceType = sourceType
         presentViewController(imagePickerController, animated: true, completion: nil)
-        
+
     }
     
     
