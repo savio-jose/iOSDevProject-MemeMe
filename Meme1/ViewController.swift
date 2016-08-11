@@ -142,6 +142,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let activityViewController = UIActivityViewController(activityItems: [memedImage],
                                                               applicationActivities: nil)
+       
+        //On an iPad the activityViewController will be displayed as a popover, so we specify the anchor
+        activityViewController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
         
         activityViewController.completionWithItemsHandler = { (activity: String?, completed: Bool, items: [AnyObject]?, error: NSError?) -> Void in
             
@@ -203,7 +206,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }else {
             
             shareMemeNavBtn.enabled = true
-        }   
+        }
     }
     
     
