@@ -151,7 +151,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if completed {
                
                 //Create the meme
-                //TODO: in Meme final version use a persistent store.
+                //TODO: in Meme final version use a persistent store to save memes.
                 let meme = Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!,originalImage:self.memeImageView.image!, memedImage:memedImage)
                 
                 self.dismissViewControllerAnimated(true, completion: nil)
