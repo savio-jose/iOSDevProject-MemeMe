@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  Meme1
 //
 //  Created by savio jose on 26/06/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
     
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var cameraBarBtn: UIBarButtonItem!
@@ -57,9 +57,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
      //MARK: Keyboard
     func subscribeToKeyboardNotifications() {
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
-         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
     }
     
@@ -157,10 +157,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             if completed {
                
-                //Create the meme
-                //TODO: in Meme final version use a persistent store to save memes.
-                let meme = Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!,originalImage:self.memeImageView.image!, memedImage:memedImage)
-                
+                self.saveMeme(memedImage)
                 self.dismissViewControllerAnimated(true, completion: nil)
 
             }
@@ -194,6 +191,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomToolBar.hidden = hidden
         navigationController?.navigationBarHidden = hidden
     }
+    
+    func saveMeme(memedImage: UIImage){
+        
+        //Create the meme
+        let meme = Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!,originalImage:self.memeImageView.image!, memedImage:memedImage)
+        
+        // Add it to the memes array in the Application Delegate
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
+        
+    }
+    
+    
+    @IBAction func didClickCancel(sender: AnyObject) {
+
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     @IBAction func resetUI(sender: AnyObject) {
             
