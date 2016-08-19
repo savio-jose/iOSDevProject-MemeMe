@@ -19,23 +19,29 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewWillAppear(animated: Bool) {
 
-            tableView.reloadData()
+        super.viewWillAppear(true)
+        tableView.reloadData()
     }
     
     
     // MARK: TableView
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        return 110
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memes.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("MemeCell")!
+        let cell = tableView.dequeueReusableCellWithIdentifier("MemeCell") as! MemeTableViewCell
         let meme = memes[indexPath.row]
         
-        // Set the name and image
-        cell.textLabel?.text = meme.topText+"..."+meme.bottomText
-        cell.imageView?.image = meme.memedImage
+        // Set the image & text
+        cell.memedImage?.image = meme.memedImage
+        cell.memeLabel?.text = meme.topText+"..."+meme.bottomText
 
         
         return cell
@@ -43,6 +49,9 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        let memeDetailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
+        memeDetailViewController.meme = memes[indexPath.row]
+        navigationController?.pushViewController(memeDetailViewController, animated: true)
         
     }
     

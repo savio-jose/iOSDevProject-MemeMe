@@ -16,6 +16,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareMemeNavBtn: UIBarButtonItem!
     @IBOutlet weak var bottomToolBar: UIToolbar!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +33,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let memeTextAttributes = [
             NSStrokeColorAttributeName : UIColor.blackColor(),
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSStrokeWidthAttributeName : -1.0
+            NSFontAttributeName : UIFont(name: "Impact", size: 40)!,
+            NSStrokeWidthAttributeName : -2.0
         ]
         
         textField.defaultTextAttributes = memeTextAttributes
@@ -43,6 +44,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewWillAppear(animated: Bool) {
         
+        super.viewWillAppear(true)
+        
         cameraBarBtn.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         subscribeToKeyboardNotifications()
         updateUIState()
@@ -50,6 +53,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     override func viewWillDisappear(animated: Bool) {
+        
+        super.viewWillDisappear(true)
 
         unsubscribeFromKeyboardNotifications()
     }
@@ -189,7 +194,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func setNavToolBarButtonHidden(hidden: Bool){
         
         bottomToolBar.hidden = hidden
-        navigationController?.navigationBarHidden = hidden
+        navigationBar.hidden = hidden
     }
     
     func saveMeme(memedImage: UIImage){
