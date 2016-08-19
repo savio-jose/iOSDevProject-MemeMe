@@ -120,10 +120,10 @@
 				A78E516C1D1FD6AA0033E557 /* Info.plist */,
 				A78E518E1D2009AC0033E557 /* Meme.swift */,
 				A792195E1D646743007FCBC1 /* SentMemesTableViewController.swift */,
+				A79219691D662F31007FCBC1 /* MemeTableViewCell.swift */,
 				A79219601D64D330007FCBC1 /* SentMemesCollectionViewController.swift */,
 				A79219621D64D3CB007FCBC1 /* MemeCollectionViewCell.swift */,
 				A79219641D65DEF2007FCBC1 /* MemeDetailViewController.swift */,
-				A79219691D662F31007FCBC1 /* MemeTableViewCell.swift */,
 			);
 			path = Meme1;
 			sourceTree = "<group>";

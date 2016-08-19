@@ -23,7 +23,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         setUpMemeTextField(topTextField)
         setUpMemeTextField(bottomTextField)
-        
     }
     
     
